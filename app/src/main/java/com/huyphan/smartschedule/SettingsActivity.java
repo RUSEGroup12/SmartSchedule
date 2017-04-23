@@ -16,18 +16,25 @@ public class SettingsActivity extends AppCompatActivity{
 
     public static final String PREFS_NAME = "MySettings";
 
-    TextView workStartTime;
+    TextView workStartTimeTextView;
+    TextView timeToGetReadyTextView;
+
+    int timeToGetReadyInMinutes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        workStartTime = (TextView) findViewById(R.id.work_start_time_text_view);
+        workStartTimeTextView = (TextView) findViewById(R.id.work_start_time_text_view);
+        timeToGetReadyTextView = (TextView) findViewById(R.id.time_to_get_ready_text_view);
 
         // Restore preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        String time = settings.getString("workStartTime", "00:00");
-        workStartTime.setText(time);
+        String workStartTime = settings.getString("workStartTime", "00:00");
+        String timeToGetReady = settings.getString("timeToGetReady", "0");
+        workStartTimeTextView.setText(workStartTime);
+        timeToGetReadyTextView.setText(timeToGetReady);
+        timeToGetReadyInMinutes = Integer.parseInt(timeToGetReady);
     }
 
     @Override
@@ -49,7 +56,8 @@ public class SettingsActivity extends AppCompatActivity{
                 // All objects are from android.context.Context
                 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
                 SharedPreferences.Editor editor = settings.edit();
-                editor.putString("workStartTime", workStartTime.getText().toString());
+                editor.putString("workStartTime", workStartTimeTextView.getText().toString());
+                editor.putString("timeToGetReady", timeToGetReadyTextView.getText().toString());
                 // Commit the edits!
                 editor.commit();
 
@@ -68,11 +76,21 @@ public class SettingsActivity extends AppCompatActivity{
                 TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        workStartTime.setText(hourOfDay + ":" + prettyMinute(minute));
+                        workStartTimeTextView.setText(hourOfDay + ":" + prettyMinute(minute));
                     }
                 }, 6, 0, false);
         timePickerDialog.show();
     }
+
+    public void increaseTime(View view){
+        timeToGetReadyInMinutes += 5;
+        timeToGetReadyTextView.setText(String.valueOf(timeToGetReadyInMinutes));
+    }
+    public void decreaseTime(View view){
+        timeToGetReadyInMinutes -= 5;
+        timeToGetReadyTextView.setText(String.valueOf(timeToGetReadyInMinutes));
+    }
+
 
     public String prettyMinute(int minute){
         if (minute==0){

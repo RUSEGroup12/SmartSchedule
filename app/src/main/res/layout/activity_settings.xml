@@ -11,15 +11,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:onClick="selectTime">
+        android:onClick="selectTime"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Work start time"
-            android:textAppearance="?android:textAppearanceLarge" />
+            android:textAppearance="?android:textAppearanceMedium" />
 
         <TextView
             android:id="@+id/work_start_time_text_view"
@@ -31,6 +31,49 @@
             android:text="00:00"
             android:textAppearance="?android:textAppearanceLarge"
             android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="selectTime"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:text="Time to get ready (minutes)"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="increaseTime"
+            android:text="+"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/time_to_get_ready_text_view"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:text="0"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="decreaseTime"
+            android:text="-"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
