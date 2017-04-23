@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_settings:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+                Intent showSettings = new Intent(this, SettingsActivity.class);
+                startActivity(showSettings);
                 return true;
 
             default:
