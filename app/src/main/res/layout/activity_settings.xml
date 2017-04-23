@@ -12,38 +12,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="10"
             android:layout_height="wrap_content"
+            android:layout_weight="10"
             android:orientation="vertical">
+
             <TextView
-                android:paddingBottom="10dp"
-                android:layout_alignParentLeft="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:onClick="selectTime"
+                android:paddingBottom="10dp"
                 android:text="Work start time"
                 android:textAppearance="?android:textAppearanceMedium" />
+
             <TextView
-                android:paddingTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="Time to get ready (mins)"
                 android:textAppearance="?android:textAppearanceMedium" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="5"
             android:gravity="center"
-            android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
-                android:paddingBottom="10dp"
                 android:id="@+id/work_start_time_text_view"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
+                android:onClick="selectTime"
+                android:paddingBottom="10dp"
                 android:text="00:00"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textStyle="bold" />

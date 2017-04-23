@@ -87,7 +87,9 @@ public class SettingsActivity extends AppCompatActivity{
         timeToGetReadyTextView.setText(String.valueOf(timeToGetReadyInMinutes));
     }
     public void decreaseTime(View view){
-        timeToGetReadyInMinutes -= 5;
+        if (timeToGetReadyInMinutes>0){
+            timeToGetReadyInMinutes -= 5;
+        }
         timeToGetReadyTextView.setText(String.valueOf(timeToGetReadyInMinutes));
     }
 
