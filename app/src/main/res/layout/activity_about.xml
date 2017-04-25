@@ -30,13 +30,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Smart Schedule Subsytem"
+            android:text="Smart Schedule Subsystem"
             android:textStyle="bold"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"
             android:textAllCaps="true"
-            android:paddingTop="10dp" />
+            android:paddingTop="30dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,13 +136,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Smart Engery Subsytem"
+            android:text="Smart Engery Subsystem"
             android:textStyle="bold"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"
             android:textAllCaps="true"
-            android:paddingTop="10dp" />
+            android:paddingTop="30dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -241,13 +241,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Smart Audio Subsytem"
+            android:text="Smart Audio Subsystem"
             android:textStyle="bold"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"
             android:textAllCaps="true"
-            android:paddingTop="10dp" />
+            android:paddingTop="30dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
