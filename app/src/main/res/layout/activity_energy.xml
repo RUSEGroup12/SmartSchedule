@@ -133,4 +133,39 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+        <Button
+            android:layout_margin="10dp"
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:onClick="homeSetting"
+            android:text="Home Settings"
+
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_margin="10dp"
+            android:id="@+id/awayButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:onClick="awaySetting"
+            android:text="Away Settings"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+
+
 </LinearLayout>
