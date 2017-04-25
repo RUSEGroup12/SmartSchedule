@@ -1,4 +1,4 @@
-package com.huyphan.smartschedule;
+package com.huyphan.SmartHome;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

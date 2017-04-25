@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.huyphan.smartschedule">
+    package="com.huyphan.SmartHome">
 
     <application
         android:allowBackup="true"
@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBvUZ6lda1fnbYCuvlAs2DJPbvPhB_vHfk" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -27,18 +31,18 @@
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.huyphan.SmartHome.MainActivity" />
         </activity>
-        <activity
-            android:name=".SettingsActivity">
+        <activity android:name=".SettingsActivity">
             android:label="Settings"
             android:parentActivityName=".MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.huyphan.SmartHome.MainActivity" />
         </activity>
+        <activity android:name=".GoogleMapActivity"></activity>
     </application>
 
 </manifest>

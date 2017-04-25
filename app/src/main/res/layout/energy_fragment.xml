@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.huyphan.smartschedule.MainActivity">
+    tools:context="com.huyphan.SmartHome.MainActivity">
 
     <TextView
         android:id="@+id/section_label"

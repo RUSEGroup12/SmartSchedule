@@ -1,4 +1,4 @@
-package com.huyphan.smartschedule;
+package com.huyphan.SmartHome;
 
 import org.junit.Test;
 

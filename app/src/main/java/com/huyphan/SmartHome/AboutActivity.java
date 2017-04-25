@@ -1,4 +1,4 @@
-package com.huyphan.smartschedule;
+package com.huyphan.SmartHome;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
