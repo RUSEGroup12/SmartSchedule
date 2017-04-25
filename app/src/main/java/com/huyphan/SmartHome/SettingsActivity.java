@@ -22,6 +22,7 @@ import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 public class SettingsActivity extends AppCompatActivity{
 
     public static final String PREFS_NAME = "MySettings";
+    public String activeField = "home";
 
     TextView workStartTimeTextView;
     TextView timeToGetReadyTextView;
@@ -110,7 +111,19 @@ public class SettingsActivity extends AppCompatActivity{
 
     //SEARCH PLACES
 
+    public void findHomeLocation(View view){
+        activeField = "home";
+        findPlace(view);
+    }
+
+    public void findWorkLocation(View view){
+        activeField = "work";
+        findPlace(view);
+    }
+
     public void findPlace(View view) {
+
+
         try {
             Intent intent =
                     new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
@@ -138,9 +151,15 @@ public class SettingsActivity extends AppCompatActivity{
                 intent.putExtra("address",place.getAddress());
                 startActivity(intent);
 
+                if (activeField == "home") {
+                    ((TextView) findViewById(R.id.home_location)).setText(place.getName() + ", " + place.getAddress() + "\n" +
+                            "Latitude: " + place.getLatLng().latitude + ", Longtitude: " + place.getLatLng().longitude);
+                } else {
+                    ((TextView) findViewById(R.id.work_location)).setText(place.getName() + ", " + place.getAddress() + "\n" +
+                            "Latitude: " + place.getLatLng().latitude + ", Longtitude: " + place.getLatLng().longitude);
+                }
 
-//                        ((TextView) findViewById(R.id.searched_address)).setText(place.getName() + ",\n" +
-//                        place.getAddress() + "\n" + place.getPhoneNumber());
+
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(this, data);
