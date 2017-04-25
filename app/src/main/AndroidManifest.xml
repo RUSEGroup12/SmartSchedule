@@ -46,6 +46,7 @@
         </activity>
         <activity android:name=".GoogleMapActivity" />
         <activity android:name=".EnergyActivity" />
+        <activity android:name=".AudioActivity"></activity>
     </application>
 
 </manifest>
