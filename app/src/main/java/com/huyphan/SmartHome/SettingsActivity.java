@@ -44,11 +44,10 @@ public class SettingsActivity extends AppCompatActivity{
 
         // Restore preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        String workStartTime = settings.getString("workStartTime", "00:00");
-        String timeToGetReady = settings.getString("timeToGetReady", "0");
-        workStartTimeTextView.setText(workStartTime);
-        timeToGetReadyTextView.setText(timeToGetReady);
-        timeToGetReadyInMinutes = Integer.parseInt(timeToGetReady);
+        workStartTimeTextView.setText(settings.getString("workStartTime", "00:00"));
+        timeToGetReadyTextView.setText(settings.getString("timeToGetReady", "0"));
+
+        timeToGetReadyInMinutes = Integer.parseInt(settings.getString("timeToGetReady", "0"));
 
         homeLocation = settings.getString("homeLocation", "To be added from Google Maps");
         homeLocationTextView.setText(homeLocation);
@@ -68,28 +67,7 @@ public class SettingsActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent showMainActivity = new Intent(this, MainActivity.class);
         startActivity(showMainActivity);
-
         Toast.makeText(this, "Settings saved", Toast.LENGTH_SHORT).show();
-
-        // We need an Editor object to make preference changes.
-        // All objects are from android.context.Context
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-
-        editor.putString("workStartTime", workStartTimeTextView.getText().toString());
-        editor.putString("timeToGetReady", timeToGetReadyTextView.getText().toString());
-
-        //Location
-        editor.putString("homeLat", homeLat);
-        editor.putString("homeLong", homeLong);
-        editor.putString("workLat", workLat);
-        editor.putString("workLong", workLong);
-        editor.putString("homeLocation", homeLocation);
-        editor.putString("workLocation", workLocation);
-
-        //Commit the edits!
-        editor.commit();
-
         return true;
     }
 
@@ -102,17 +80,32 @@ public class SettingsActivity extends AppCompatActivity{
                     }
                 }, 6, 0, false);
         timePickerDialog.show();
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("workStartTime", workStartTimeTextView.getText().toString());
+        editor.commit();
     }
 
     public void increaseTime(View view){
         timeToGetReadyInMinutes += 5;
         timeToGetReadyTextView.setText(String.valueOf(timeToGetReadyInMinutes));
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("timeToGetReady", timeToGetReadyTextView.getText().toString());
+        editor.commit();
+
     }
     public void decreaseTime(View view){
         if (timeToGetReadyInMinutes>0){
             timeToGetReadyInMinutes -= 5;
         }
         timeToGetReadyTextView.setText(String.valueOf(timeToGetReadyInMinutes));
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("timeToGetReady", timeToGetReadyTextView.getText().toString());
+        editor.commit();
     }
 
 
@@ -176,6 +169,8 @@ public class SettingsActivity extends AppCompatActivity{
                     homeLat = String.valueOf(place.getLatLng().latitude);
                     homeLat = String.valueOf(place.getLatLng().longitude);
                     editor.putString("homeLocation", homeLocation);
+                    editor.putString("homeLat", homeLat);
+                    editor.putString("homeLong", homeLong);
 
                 } else {
 
@@ -185,6 +180,8 @@ public class SettingsActivity extends AppCompatActivity{
                     workLat = String.valueOf(place.getLatLng().latitude);
                     workLong = String.valueOf(place.getLatLng().longitude);
                     editor.putString("workLocation", workLocation);
+                    editor.putString("workLat", workLat);
+                    editor.putString("workLong", workLong);
                 }
 
                 editor.commit();
