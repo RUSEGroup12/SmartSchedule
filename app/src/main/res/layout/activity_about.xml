@@ -25,9 +25,18 @@
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"
             android:textAllCaps="true"
-            android:paddingTop="10dp"
+            android:paddingTop="10dp" />
 
-            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Smart Schedule Subsytem"
+            android:textStyle="bold"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:paddingTop="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -123,6 +132,17 @@
 
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Smart Engery Subsytem"
+            android:textStyle="bold"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:paddingTop="10dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -181,6 +201,64 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:src="@drawable/nick"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:text="NICHOLAS GRIECO"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:gravity="center_vertical"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:text="Rutgers University - School Of Engineering"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:text="nrg38@scarletmail.rutgers.edu"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Smart Audio Subsytem"
+            android:textStyle="bold"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:paddingTop="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/akhil"/>
 
             <LinearLayout
@@ -214,6 +292,53 @@
                     android:gravity="top"
                     android:textAppearance="?android:textAppearanceSmall"
                     android:text="ab1395@scarletmail.rutgers.edu"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/vinay"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:text="Vinay Shah"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:gravity="center_vertical"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:text="Rutgers University - School Of Engineering"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:text="vinay.shah@rutgers.edu"/>
 
             </LinearLayout>
         </LinearLayout>
