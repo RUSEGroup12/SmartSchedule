@@ -12,6 +12,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "MySettings";
     String homeLat; String homeLong;
     String workLat; String workLong;
+    int eta;
 
     private FragmentAdapter mFragmentAdapter;
     private ViewPager mViewPager;
@@ -57,10 +61,13 @@ public class MainActivity extends AppCompatActivity {
 
         DownloadTask task = new DownloadTask();
 
-        task.execute("https://maps.googleapis.com/maps/api/directions/json?" +
+        String URL_REQUEST = "https://maps.googleapis.com/maps/api/directions/json?" +
                 "origin=" + homeLat + "," + homeLong +
                 "&destination=" + workLat + "," + workLong +
-                "&key=AIzaSyCpl9VDsbJ_-tmb2askZQ-nABj_pj6PVh4");
+                "&key=AIzaSyCpl9VDsbJ_-tmb2askZQ-nABj_pj6PVh4";
+
+        task.execute(URL_REQUEST);
+        Log.i("URL", URL_REQUEST);
         Log.i("INFO", "Task has been executed");
 
     }
@@ -131,7 +138,40 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
             Log.i("Google Map: ", result);
 
+            int etaResult = jsonToMinutes(result);
+            Log.i("ETA", "" + eta);
+
+            eta = etaResult;
+
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("eta", etaResult);
+            editor.commit();
         }
     }
 
+
+    public static int jsonToMinutes(String input){
+
+
+        int duration = 0 ;
+
+        try{
+
+            JSONObject googleJSON  = new JSONObject(input); // json
+            duration = googleJSON.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(0).getJSONObject("duration").getInt("value");
+            duration /= 60;
+            return duration;
+
+        }catch(JSONException pe){
+
+            System.out.println("position: " + pe.getMessage());
+            System.out.println(pe);
+        }
+
+        return 0; // return 0 if try statement fails
+
+    }
+
 }
+

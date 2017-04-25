@@ -113,6 +113,9 @@ public class SettingsActivity extends AppCompatActivity{
         if (minute==0){
             return "00";
         }
+        if (minute < 10){
+            return "0" + minute;
+        }
         return String.valueOf(minute);
     }
 
