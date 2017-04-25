@@ -77,13 +77,13 @@ public class SettingsActivity extends AppCompatActivity{
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         workStartTimeTextView.setText(hourOfDay + ":" + prettyMinute(minute));
+                        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString("workStartTime", workStartTimeTextView.getText().toString());
+                        editor.commit();
                     }
                 }, 6, 0, false);
         timePickerDialog.show();
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("workStartTime", workStartTimeTextView.getText().toString());
-        editor.commit();
     }
 
     public void increaseTime(View view){

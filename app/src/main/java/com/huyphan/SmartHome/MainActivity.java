@@ -1,30 +1,31 @@
 package com.huyphan.SmartHome;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private FragmentAdapter mFragmentAdapter;
+    public static final String PREFS_NAME = "MySettings";
+    String homeLat; String homeLong;
+    String workLat; String workLong;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+    private FragmentAdapter mFragmentAdapter;
     private ViewPager mViewPager;
 
     @Override
@@ -44,6 +45,22 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        // Restore preferences
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        homeLat = settings.getString("homeLat", ""); homeLong = settings.getString("homeLong", "");
+        workLat = settings.getString("workLat", ""); workLong = settings.getString("workLong", "");
+
+
+        if ((homeLat != "") && (homeLong != "") && (workLat != "") && (workLong != "")) {
+            DownloadTask task = new DownloadTask();
+//        task.execute("https://maps.googleapis.com/maps/api/directions/json?origin=Brooklyn&destination=Queens&mode=transit&key=AIzaSyC2iXJQJrb7xeZJv-qVyQ0UkdAtP_G8Lkk");
+
+            task.execute("https://maps.googleapis.com/maps/api/directions/json?" +
+                    "origin=" + homeLat + "," + homeLong +
+                    "&destination=" + workLat + "," + workLong +
+                    "&key=AIzaSyBvUZ6lda1fnbYCuvlAs2DJPbvPhB_vHfk");
+        }
     }
 
 
@@ -74,5 +91,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    public class DownloadTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+
+            String result = "";
+            URL url;
+            HttpURLConnection urlConnection = null;
+
+            try {
+                url = new URL(urls[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream in = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+                int data = reader.read();
+                while (data != -1) {
+                    char current = (char) data;
+                    result += current;
+                    data = reader.read();
+                }
+
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            Log.i("Google Map: ", result);
+
+        }
+    }
 
 }
