@@ -23,9 +23,13 @@ public class SettingsActivity extends AppCompatActivity{
 
     public static final String PREFS_NAME = "MySettings";
     public String activeField = "home";
+    public String homeLocation = ""; public String homeLat = ""; public String homeLong = "";
+    public String workLocation = ""; public String workLat = ""; public String workLong = "";
 
     TextView workStartTimeTextView;
     TextView timeToGetReadyTextView;
+    TextView homeLocationTextView;
+    TextView workLocationTextView;
 
     int timeToGetReadyInMinutes;
 
@@ -35,6 +39,9 @@ public class SettingsActivity extends AppCompatActivity{
         setContentView(R.layout.activity_settings);
         workStartTimeTextView = (TextView) findViewById(R.id.work_start_time_text_view);
         timeToGetReadyTextView = (TextView) findViewById(R.id.time_to_get_ready_text_view);
+        homeLocationTextView = (TextView) findViewById(R.id.home_location);
+        workLocationTextView = (TextView) findViewById(R.id.work_location);
+
 
         // Restore preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -43,6 +50,12 @@ public class SettingsActivity extends AppCompatActivity{
         workStartTimeTextView.setText(workStartTime);
         timeToGetReadyTextView.setText(timeToGetReady);
         timeToGetReadyInMinutes = Integer.parseInt(timeToGetReady);
+
+        homeLocation = settings.getString("homeLocation", "To be added from Google Maps");
+        homeLocationTextView.setText(homeLocation);
+
+        workLocation = settings.getString("workLocation", "To be added from Google Maps");
+        workLocationTextView.setText(workLocation);
     }
 
     @Override
@@ -66,6 +79,15 @@ public class SettingsActivity extends AppCompatActivity{
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("workStartTime", workStartTimeTextView.getText().toString());
                 editor.putString("timeToGetReady", timeToGetReadyTextView.getText().toString());
+
+                //Location
+                editor.putString("homeLat", homeLat);
+                editor.putString("homeLong", homeLong);
+                editor.putString("workLat", workLat);
+                editor.putString("workLong", workLong);
+                editor.putString("homeLocation", homeLocation);
+                editor.putString("workLocation", workLocation);
+
                 // Commit the edits!
                 editor.commit();
 
@@ -142,7 +164,6 @@ public class SettingsActivity extends AppCompatActivity{
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
-                Log.e("Tag", "Place: " + place.getAddress() + place.getPhoneNumber() + place.getLatLng().latitude);
 
                 Intent intent = new Intent(this, GoogleMapActivity.class);
                 intent.putExtra("latitude",place.getLatLng().latitude);
@@ -151,12 +172,25 @@ public class SettingsActivity extends AppCompatActivity{
                 intent.putExtra("address",place.getAddress());
                 startActivity(intent);
 
+                String textToDisplay = place.getName() + ", " + place.getAddress() + "\n" +
+                        "Latitude: " + place.getLatLng().latitude + ", Longtitude: " + place.getLatLng().longitude;
+
                 if (activeField == "home") {
-                    ((TextView) findViewById(R.id.home_location)).setText(place.getName() + ", " + place.getAddress() + "\n" +
-                            "Latitude: " + place.getLatLng().latitude + ", Longtitude: " + place.getLatLng().longitude);
+
+                    homeLocationTextView.setText(textToDisplay);
+
+                    homeLocation = textToDisplay;
+                    homeLat = String.valueOf(place.getLatLng().latitude);
+                    homeLat = String.valueOf(place.getLatLng().longitude);
+
+
                 } else {
-                    ((TextView) findViewById(R.id.work_location)).setText(place.getName() + ", " + place.getAddress() + "\n" +
-                            "Latitude: " + place.getLatLng().latitude + ", Longtitude: " + place.getLatLng().longitude);
+
+                    workLocationTextView.setText(textToDisplay);
+
+                    workLocation = textToDisplay;
+                    workLat = String.valueOf(place.getLatLng().latitude);
+                    workLong = String.valueOf(place.getLatLng().longitude);
                 }
 
 
