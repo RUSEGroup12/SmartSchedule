@@ -1,36 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context="com.huyphan.SmartHome.MainActivity">
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="textView"
-        android:visibility="visible"
         android:layout_centerHorizontal="true"
-        android:textSize="25dp"
-        android:layout_marginTop="89dp" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Buccaneer Island"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30dp"
+        android:visibility="visible" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/startTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="00:00" />
+
+        <TextView
+            android:id="@+id/totalTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="00:00" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:max="100"
+        android:progress="0" />
+
+    <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_below="@+id/startTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp">
+        android:layout_below="@+id/startTime"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:elevation="10dp"
+            android:backgroundTint="@color/colorPrimary"
             app:srcCompat="@android:drawable/ic_media_previous" />
 
         <ImageButton
@@ -38,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:elevation="10dp"
+            android:backgroundTint="@color/colorPrimary"
             app:srcCompat="@android:drawable/ic_media_pause" />
 
         <ImageButton
@@ -46,7 +83,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:elevation="10dp"
+            android:backgroundTint="@color/colorPrimary"
             app:srcCompat="@android:drawable/ic_media_play" />
 
         <ImageButton
@@ -54,118 +91,53 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:elevation="10dp"
+            android:backgroundTint="@color/colorPrimary"
             app:srcCompat="@android:drawable/ic_media_next" />
 
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progress"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="0"
-        android:progressTint="@color/colorAccent"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="6dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="87dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:id="@+id/startTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="00:00"
-        android:layout_alignBottom="@+id/progress"
-        android:layout_alignLeft="@+id/progress"
-        android:layout_alignStart="@+id/progress" />
-
-    <TextView
-        android:id="@+id/totalTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00:00"
-        android:layout_alignBaseline="@+id/startTime"
-        android:layout_alignBottom="@+id/startTime"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp" />
-
-    <TextView
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="#17202A"
-        android:text=" "
-        android:layout_below="@+id/linearLayout2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:id="@+id/relativeLayout"
-        android:layout_below="@+id/bar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/Alexa"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="46dp"
+            android:layout_weight="2"
             android:text="Alexa Integration"
+            android:textAppearance="?android:textAppearanceLarge"
             android:textSize="20sp" />
 
         <Switch
             android:id="@+id/switch1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/Alexa"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="11dp"
-            android:layout_marginRight="11dp"
-            android:layout_alignTop="@+id/Alexa" />
-    </RelativeLayout>
+            android:layout_weight="1" />
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_marginTop="46dp"
-        android:id="@+id/relativeLayout2">
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/Adaptive_Audio"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="23dp"
+            android:layout_weight="2"
             android:text="Adaptive Audio"
+            android:textAppearance="?android:textAppearanceLarge"
             android:textSize="20sp" />
-    </RelativeLayout>
 
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/relativeLayout2"
-        android:layout_alignEnd="@+id/totalTime"
-        android:layout_alignRight="@+id/totalTime" />
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
