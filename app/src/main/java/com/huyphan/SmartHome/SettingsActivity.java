@@ -42,7 +42,6 @@ public class SettingsActivity extends AppCompatActivity{
         homeLocationTextView = (TextView) findViewById(R.id.home_location);
         workLocationTextView = (TextView) findViewById(R.id.work_location);
 
-
         // Restore preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String workStartTime = settings.getString("workStartTime", "00:00");
@@ -68,38 +67,31 @@ public class SettingsActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent showMainActivity = new Intent(this, MainActivity.class);
-        switch (item.getItemId()) {
-            case R.id.action_save:
-                Toast.makeText(this, "Settings saved", Toast.LENGTH_SHORT).show();
-                startActivity(showMainActivity);
+        startActivity(showMainActivity);
 
-                // We need an Editor object to make preference changes.
-                // All objects are from android.context.Context
-                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putString("workStartTime", workStartTimeTextView.getText().toString());
-                editor.putString("timeToGetReady", timeToGetReadyTextView.getText().toString());
+        Toast.makeText(this, "Settings saved", Toast.LENGTH_SHORT).show();
 
-                //Location
-                editor.putString("homeLat", homeLat);
-                editor.putString("homeLong", homeLong);
-                editor.putString("workLat", workLat);
-                editor.putString("workLong", workLong);
-                editor.putString("homeLocation", homeLocation);
-                editor.putString("workLocation", workLocation);
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
 
-                // Commit the edits!
-                editor.commit();
+        editor.putString("workStartTime", workStartTimeTextView.getText().toString());
+        editor.putString("timeToGetReady", timeToGetReadyTextView.getText().toString());
 
-                return true;
-            default:
-                Toast.makeText(this, "Changes discarded", Toast.LENGTH_SHORT).show();
-                startActivity(showMainActivity);
-                return super.onOptionsItemSelected(item);
-        }
+        //Location
+        editor.putString("homeLat", homeLat);
+        editor.putString("homeLong", homeLong);
+        editor.putString("workLat", workLat);
+        editor.putString("workLong", workLong);
+        editor.putString("homeLocation", homeLocation);
+        editor.putString("workLocation", workLocation);
 
+        //Commit the edits!
+        editor.commit();
+
+        return true;
     }
-
 
     public void selectTime(View view){
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new
@@ -144,8 +136,6 @@ public class SettingsActivity extends AppCompatActivity{
     }
 
     public void findPlace(View view) {
-
-
         try {
             Intent intent =
                     new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
@@ -175,6 +165,9 @@ public class SettingsActivity extends AppCompatActivity{
                 String textToDisplay = place.getName() + ", " + place.getAddress() + "\n" +
                         "Latitude: " + place.getLatLng().latitude + ", Longtitude: " + place.getLatLng().longitude;
 
+                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                SharedPreferences.Editor editor = settings.edit();
+
                 if (activeField == "home") {
 
                     homeLocationTextView.setText(textToDisplay);
@@ -182,7 +175,7 @@ public class SettingsActivity extends AppCompatActivity{
                     homeLocation = textToDisplay;
                     homeLat = String.valueOf(place.getLatLng().latitude);
                     homeLat = String.valueOf(place.getLatLng().longitude);
-
+                    editor.putString("homeLocation", homeLocation);
 
                 } else {
 
@@ -191,8 +184,10 @@ public class SettingsActivity extends AppCompatActivity{
                     workLocation = textToDisplay;
                     workLat = String.valueOf(place.getLatLng().latitude);
                     workLong = String.valueOf(place.getLatLng().longitude);
+                    editor.putString("workLocation", workLocation);
                 }
 
+                editor.commit();
 
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {

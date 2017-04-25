@@ -4,6 +4,7 @@ package com.huyphan.SmartHome;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,5 +44,10 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
                 .title(title)
                 .snippet(address)
                 .position(sydney));
+    }
+
+    public void moveBackToSettings(View view){
+        Intent moveBackToSettings =  new Intent(this, SettingsActivity.class);
+        startActivity(moveBackToSettings);
     }
 }

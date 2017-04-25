@@ -62,7 +62,7 @@
                 <Button
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/colorPrimary"
                     android:onClick="increaseTime"
                     android:text="+"
                     android:textColor="#FFFFFF" />
@@ -80,7 +80,7 @@
                 <Button
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/colorPrimary"
                     android:onClick="decreaseTime"
                     android:text="-"
                     android:textColor="#FFFFFF" />
@@ -120,7 +120,6 @@
         android:id="@+id/home_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="To be added from Google Maps"
         android:textAppearance="?android:textAppearanceSmall"
         android:textStyle="italic" />
 
@@ -155,7 +154,6 @@
         android:id="@+id/work_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="To be added from Google Maps"
         android:textAppearance="?android:textAppearanceSmall"
         android:textStyle="italic" />
 
