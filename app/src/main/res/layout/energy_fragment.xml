@@ -6,15 +6,21 @@
     android:orientation="vertical"
     tools:context="com.huyphan.SmartHome.MainActivity">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:paddingBottom="10dp"
+        android:src="@drawable/home"/>
+    <Button
+        android:id="@+id/energy"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Engery Fragment"
-        android:textAllCaps="true"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold" />
+        android:layout_marginBottom="30dp"
+        android:text="Connect to Home"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>
