@@ -51,16 +51,18 @@ public class MainActivity extends AppCompatActivity {
         homeLat = settings.getString("homeLat", ""); homeLong = settings.getString("homeLong", "");
         workLat = settings.getString("workLat", ""); workLong = settings.getString("workLong", "");
 
+        Log.i("INFO", "Task has been executed");
+        Log.i("HomeLat", homeLat); Log.i("HomeLong", homeLong);
+        Log.i("WorkLat", workLat); Log.i("WorkLong", workLong);
 
-        if ((homeLat != "") && (homeLong != "") && (workLat != "") && (workLong != "")) {
-            DownloadTask task = new DownloadTask();
-//        task.execute("https://maps.googleapis.com/maps/api/directions/json?origin=Brooklyn&destination=Queens&mode=transit&key=AIzaSyC2iXJQJrb7xeZJv-qVyQ0UkdAtP_G8Lkk");
+        DownloadTask task = new DownloadTask();
 
-            task.execute("https://maps.googleapis.com/maps/api/directions/json?" +
-                    "origin=" + homeLat + "," + homeLong +
-                    "&destination=" + workLat + "," + workLong +
-                    "&key=AIzaSyBvUZ6lda1fnbYCuvlAs2DJPbvPhB_vHfk");
-        }
+        task.execute("https://maps.googleapis.com/maps/api/directions/json?" +
+                "origin=" + homeLat + "," + homeLong +
+                "&destination=" + workLat + "," + workLong +
+                "&key=AIzaSyCpl9VDsbJ_-tmb2askZQ-nABj_pj6PVh4");
+        Log.i("INFO", "Task has been executed");
+
     }
 
 

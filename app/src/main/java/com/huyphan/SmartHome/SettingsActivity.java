@@ -155,36 +155,38 @@ public class SettingsActivity extends AppCompatActivity{
                 intent.putExtra("address",place.getAddress());
                 startActivity(intent);
 
-                String textToDisplay = place.getName() + ", " + place.getAddress() + "\n" +
-                        "Latitude: " + place.getLatLng().latitude + ", Longtitude: " + place.getLatLng().longitude;
-
                 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
                 SharedPreferences.Editor editor = settings.edit();
 
                 if (activeField == "home") {
 
+                    String textToDisplay = place.getName() + ", " + place.getAddress() + "\n" +
+                            "Latitude: " + place.getLatLng().latitude + ", Longtitude: " + place.getLatLng().longitude;
+
                     homeLocationTextView.setText(textToDisplay);
 
                     homeLocation = textToDisplay;
                     homeLat = String.valueOf(place.getLatLng().latitude);
-                    homeLat = String.valueOf(place.getLatLng().longitude);
+                    homeLong = String.valueOf(place.getLatLng().longitude);
                     editor.putString("homeLocation", homeLocation);
                     editor.putString("homeLat", homeLat);
                     editor.putString("homeLong", homeLong);
+                    editor.commit();
 
                 } else {
 
-                    workLocationTextView.setText(textToDisplay);
+                    String textToDisplay = place.getName() + ", " + place.getAddress() + "\n" +
+                            "Latitude: " + place.getLatLng().latitude + ", Longtitude: " + place.getLatLng().longitude;
 
+                    workLocationTextView.setText(textToDisplay);
                     workLocation = textToDisplay;
                     workLat = String.valueOf(place.getLatLng().latitude);
                     workLong = String.valueOf(place.getLatLng().longitude);
                     editor.putString("workLocation", workLocation);
                     editor.putString("workLat", workLat);
                     editor.putString("workLong", workLong);
+                    editor.commit();
                 }
-
-                editor.commit();
 
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
